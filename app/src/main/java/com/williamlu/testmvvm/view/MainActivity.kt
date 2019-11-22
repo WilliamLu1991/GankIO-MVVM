@@ -116,6 +116,7 @@ class MainActivity : AppBaseActivity<MainViewModel, ActivityMainBinding>(), Base
             showEmptyDataView()
             return
         }
+
         binding?.mainRv?.visibility = View.GONE
         binding?.mainRvWelfare?.visibility = View.VISIBLE
         if (mWelFareAdapter == null) {
