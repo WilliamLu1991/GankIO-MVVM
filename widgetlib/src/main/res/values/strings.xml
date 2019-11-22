@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WidgetLib</string>
+    <string name="toolbar_name">一网乡汇</string>
+
+    <string name="msg_data_empty">暂时还没有相关数据哦~</string>
+    <string name="msg_loading">加载中...</string>
+    <string name="msg_error">获取数据失败!\n请点击或下拉刷新试试</string>
+
+    <string name="indicator">%1$s/%2$s</string>
+</resources>

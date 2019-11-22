@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MarqueeViewStyle">
+        <attr name="mvInterval" format="integer|reference"/>
+        <attr name="mvAnimDuration" format="integer|reference"/>
+        <attr name="mvTextSize" format="dimension|reference"/>
+        <attr name="mvTextColor" format="color|reference"/>
+        <attr name="mvSingleLine" format="boolean"/>
+        <attr name="mvFont" format="reference"/>
+        <attr name="mvGravity">
+            <enum name="left" value="0"/>
+            <enum name="center" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+        <attr name="mvDirection">
+            <enum name="bottom_to_top" value="0"/>
+            <enum name="top_to_bottom" value="1"/>
+            <enum name="right_to_left" value="2"/>
+            <enum name="left_to_right" value="3"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="BannerLayout">
+        <attr name="interval" format="integer"/>
+        <attr name="showIndicator" format="boolean"/>
+        <attr name="orientation" format="enum">
+            <enum name="horizontal" value="0"/>
+            <enum name="vertical" value="1"/>
+        </attr>
+        <attr name="autoPlaying" format="boolean"/>
+        <attr name="itemSpace" format="integer"/>
+        <attr name="centerScale" format="float"/>
+        <attr name="moveSpeed" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="RecyclerViewBannerBase">
+        <attr name="interval"/>
+        <attr name="showIndicator" />
+        <attr name="orientation" />
+        <attr name="autoPlaying"/>
+        <attr name="indicatorSelectedSrc" format="color|reference"/>
+        <attr name="indicatorUnselectedSrc" format="color|reference"/>
+        <attr name="indicatorSpace" format="dimension|reference"/>
+        <attr name="indicatorMarginLeft" format="dimension|reference"/>
+        <attr name="indicatorMarginRight" format="dimension|reference"/>
+        <attr name="indicatorMarginBottom" format="dimension|reference"/>
+        <attr name="indicatorGravity" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="center" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="BannerIndicator">
+        <!-- 圆点的颜色 -->
+        <attr name="selectColor" format="color" />
+        <!-- 未选中圆点的颜色 -->
+        <attr name="unselectedColor" format="color" />
+        <!-- 圆点的大小 -->
+        <attr name="radius" format="dimension" />
+        <!-- 圆点间间距的大小 -->
+        <attr name="space" format="dimension" />
+        <!-- 小点的样式，默认是 0 圆形  1矩形  2椭圆-->
+        <attr name="indicatorStyle" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="Banner">
+        <attr name="delay_time" format="integer" />
+        <attr name="scroll_time" format="integer" />
+        <attr name="is_auto_play" format="boolean" />
+        <attr name="title_background" format="color|reference" />
+        <attr name="title_textcolor" format="color" />
+        <attr name="title_textsize" format="dimension" />
+        <attr name="title_height" format="dimension" />
+        <attr name="indicator_width" format="dimension" />
+        <attr name="indicator_height" format="dimension" />
+        <attr name="indicator_margin" format="dimension" />
+        <attr name="indicator_drawable_selected" format="reference" />
+        <attr name="indicator_drawable_unselected" format="reference" />
+        <attr name="banner_layout" format="reference"/>
+        <attr name="banner_default_image" format="reference"/>
+        <attr name="image_scale_type" format="enum">
+            <enum name="center" value="0" />
+            <enum name="center_crop" value="1" />
+            <enum name="center_inside" value="2" />
+            <enum name="fit_center" value="3" />
+            <enum name="fit_end" value="4" />
+            <enum name="fit_start" value="5" />
+            <enum name="fit_xy" value="6" />
+            <enum name="matrix" value="7" />
+        </attr>
+        <!--<attr name="indicator_animator" format="reference" />-->
+        <!--<attr name="indicator_animator_reverse" format="reference" />-->
+    </declare-styleable>
+
+    <declare-styleable name="AutoWrapLayout">
+        <attr name="line_padding" format="integer"/>
+        <attr name="text_background" format="reference"/><!-- TextView的背景 -->
+        <attr name="child_margin" format="integer"/><!-- 子View的外边距 -->
+    </declare-styleable>
+
+    <declare-styleable name="CustomRatingBar">
+        <!--填充图片-->
+        <attr name="star_img" format="reference" />
+        <!--默认图片-->
+        <attr name="unstar_img" format="reference" />
+        <!--图片宽度-->
+        <attr name="image_width" format="dimension" />
+        <!--图片高度-->
+        <attr name="image_height" format="dimension" />
+        <!--图片之间的间距-->
+        <attr name="image_padding" format="dimension" />
+        <!--图片总数-->
+        <attr name="star_count" format="integer" />
+        <!--填充的图片数量-->
+        <attr name="star" format="integer" />
+        <!--是否可以点击-->
+        <attr name="clickable" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="XImageView">
+        <!-- 初始化状态时, 如果图片小于 view 的尺寸，是否需要适应view的尺寸-->
+        <attr name="initType" format="enum" >
+            <enum name="fitViewMin" value="1" />
+            <enum name="fitViewMax" value="2" />
+            <enum name="fitImage" value="4" />
+            <enum name="fitViewMinImageMin" value="8" />
+        </attr>
+
+        <attr name="doubleType" format="enum">
+            <enum name="fitViewMinViewMax" value="1" />
+            <enum name="fitImageMinViewMax" value="2" />
+            <enum name="fitViewMinImageMax" value="4" />
+            <enum name="fitImageMinImageMax" value="8" />
+        </attr>
+    </declare-styleable>
+
+    <!--小图标，描述，提示语，线颜色-->
+    <declare-styleable name="TextInputView">
+        <attr name="iconImg" format="reference" />
+        <attr name="tipStr" format="string" />
+        <attr name="hideStr" format="string" />
+        <attr name="lineColor" format="color" />
+    </declare-styleable>
+
+</resources>

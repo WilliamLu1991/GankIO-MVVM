@@ -1,0 +1,2 @@
+include ':app',':datalib', ':toolslib', ':widgetlib'
+rootProject.name='TestMvvm'
