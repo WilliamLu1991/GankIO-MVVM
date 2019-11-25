@@ -1,15 +1,13 @@
 package com.williamlu.toolslib
 
-import android.annotation.SuppressLint
-import android.annotation.TargetApi
 import android.app.Activity
+import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Build
 import android.text.TextUtils
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
-
 
 /**
  * @Author: WilliamLu
@@ -20,22 +18,18 @@ object CopyPasteUtil {
     /**
      * 复制
      */
-    fun copy(context: Context, content: String) {
-        val cbm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        cbm.text = content
-        ToastUtils.showToast("复制成功")
+    fun copy(context: Context, content: String, isShowToast: Boolean = true) {
+        val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+        val mClipData: ClipData = ClipData.newPlainText("Label", content)
+        cm?.primaryClip = mClipData
+        if (isShowToast && cm != null) {
+            ToastUtils.showToast("复制成功")
+        }
     }
 
     /**
-     * 粘贴
-     */
-    fun Paste(context: Context): String {
-        val cbm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        return cbm.text.toString().trim()
-    }
-
-    /**
-     * 获取复制的文本
+     * 获取复制的文本（粘贴） 支持 android O
+     * 使用：CopyPasteUtil.getClipboardText(this, object : (String) -> Unit {override fun invoke(copyText: String) { }}
      */
     fun getClipboardText(@Nullable activity: Activity, f: (String) -> Unit) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
@@ -49,8 +43,9 @@ object CopyPasteUtil {
      * 清空剪切板内容
      */
     fun clearClipboard(context: Context) {
-        val cbm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        cbm.text = null
+        val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+        val mClipData: ClipData = ClipData.newPlainText("Label", null)
+        cm?.primaryClip = mClipData
     }
 
     /**
