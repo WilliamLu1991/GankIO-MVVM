@@ -1,9 +1,11 @@
 package com.williamlu.testmvvm.view
 
-import android.widget.TextView
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
 import com.williamlu.testmvvm.R
+import com.williamlu.testmvvm.databinding.ItemGankDataBinding
 import com.williamlu.testmvvm.model.GankBean
 
 /**
@@ -11,13 +13,15 @@ import com.williamlu.testmvvm.model.GankBean
  * @Data: 2018/12/3
  * @Description:
  */
-class GankFilterAdapter(data: List<GankBean>?) : BaseQuickAdapter<GankBean, BaseViewHolder>(R.layout.recycler_item_gank_data, data) {
+class GankFilterAdapter(data: List<GankBean>?) : BaseQuickAdapter<GankBean, GankFilterViewHolder>(data) {
 
-    override fun convert(helper: BaseViewHolder?, item: GankBean) {
-        with(item) {
-            helper?.getView<TextView>(R.id.tv_desc)?.text = desc
-            helper?.getView<TextView>(R.id.tv_who)?.text = who
-            helper?.getView<TextView>(R.id.tv_date)?.text = publishedAt
-        }
+    override fun createBaseViewHolder(parent: ViewGroup?, layoutResId: Int): GankFilterViewHolder {
+        val itemGankDataBinding =
+            DataBindingUtil.inflate<ItemGankDataBinding>(LayoutInflater.from(mContext), R.layout.item_gank_data, parent, false)
+        return GankFilterViewHolder(itemGankDataBinding)
+    }
+
+    override fun convert(helper: GankFilterViewHolder?, item: GankBean?) {
+        helper?.dataBinding?.gankbean = item
     }
 }

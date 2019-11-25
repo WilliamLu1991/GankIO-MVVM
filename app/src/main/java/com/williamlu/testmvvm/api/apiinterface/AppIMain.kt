@@ -17,6 +17,6 @@ interface AppIMain {
 
     fun gankFilter(filterType: String, count: Int, page: Int): Observable<BaseListBean<GankBean>>
 
-    fun search(queryText: String, count: Int, page: Int): Observable<BaseListBean<GankBean>>
+    fun search(queryText: String, count: Int, page: Int): Observable<BaseListBean <GankBean>>
 
 }
