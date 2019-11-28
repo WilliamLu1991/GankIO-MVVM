@@ -23,5 +23,6 @@ class GankFilterAdapter(data: List<GankBean>?) : BaseQuickAdapter<GankBean, Gank
 
     override fun convert(helper: GankFilterViewHolder?, item: GankBean?) {
         helper?.dataBinding?.gankbean = item
+        helper?.dataBinding?.executePendingBindings()
     }
 }

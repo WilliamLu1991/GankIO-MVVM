@@ -25,5 +25,6 @@ class WelFareAdapter(data: List<GankBean>?) : BaseQuickAdapter<GankBean, WelFare
 
     override fun convert(helper: WelFareViewHolder?, item: GankBean) {
         helper?.dataBinding?.welfarebean = item
+        helper?.dataBinding?.executePendingBindings()
     }
 }
