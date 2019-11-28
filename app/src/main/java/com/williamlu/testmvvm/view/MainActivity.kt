@@ -7,8 +7,6 @@ import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
@@ -20,7 +18,6 @@ import com.williamlu.testmvvm.databinding.ActivityMainBinding
 import com.williamlu.testmvvm.model.GankBean
 import com.williamlu.testmvvm.model.GankFilterType
 import com.williamlu.testmvvm.viewmodel.MainViewModel
-import com.williamlu.widgetlib.banner.listener.OnBannerListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_app_bar.*
 import kotlinx.android.synthetic.main.nav_header.view.*
@@ -116,12 +113,12 @@ class MainActivity : AppBaseActivity<MainViewModel, ActivityMainBinding>(), Base
             showEmptyDataView()
             return
         }
-        binding?.mainRv?.visibility = View.GONE
-        binding?.mainRvWelfare?.visibility = View.VISIBLE
+        mBinding?.mainRv?.visibility = View.GONE
+        mBinding?.mainRvWelfare?.visibility = View.VISIBLE
         if (mWelFareAdapter == null) {
-            binding?.mainRvWelfare?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            mBinding?.mainRvWelfare?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             mWelFareAdapter = WelFareAdapter(it)
-            binding?.mainRvWelfare?.adapter = mWelFareAdapter
+            mBinding?.mainRvWelfare?.adapter = mWelFareAdapter
             mWelFareAdapter?.setOnLoadMoreListener(this)
         } else {
             if (mPage == 1) {
@@ -142,12 +139,12 @@ class MainActivity : AppBaseActivity<MainViewModel, ActivityMainBinding>(), Base
             showEmptyDataView()
             return
         }
-        binding?.mainRv?.visibility = View.VISIBLE
-        binding?.mainRvWelfare?.visibility = View.GONE
+        mBinding?.mainRv?.visibility = View.VISIBLE
+        mBinding?.mainRvWelfare?.visibility = View.GONE
         if (mGankFilterAdapter == null) {
-            binding?.mainRv?.layoutManager = LinearLayoutManager(this)
+            mBinding?.mainRv?.layoutManager = LinearLayoutManager(this)
             mGankFilterAdapter = GankFilterAdapter(it)
-            binding?.mainRv?.adapter = mGankFilterAdapter
+            mBinding?.mainRv?.adapter = mGankFilterAdapter
             mGankFilterAdapter?.setOnLoadMoreListener(this)
         } else {
             if (mPage == 1) {

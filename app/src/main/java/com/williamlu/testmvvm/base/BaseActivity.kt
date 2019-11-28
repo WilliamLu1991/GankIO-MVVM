@@ -14,7 +14,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.williamlu.testmvvm.AppConstant
 import com.williamlu.toolslib.PermissionsUtils
-import com.williamlu.toolslib.SpUtils
 import com.williamlu.widgetlib.BaseToolBarHelper
 import com.williamlu.widgetlib.CustomLoadingDialog
 import com.williamlu.widgetlib.statusbar.StatusBarCompat
@@ -46,7 +45,7 @@ abstract class BaseActivity<VM : BaseViewModel, VDB : ViewDataBinding> : AppComp
     private var mCompositeDisposable: CompositeDisposable? = null
     protected var mPermissions: Array<String>? = null
     protected var mViewModel: VM? = null
-    protected var binding: VDB? = null
+    protected var mBinding: VDB? = null
 
     /**
      * 获取布局ID
@@ -86,8 +85,8 @@ abstract class BaseActivity<VM : BaseViewModel, VDB : ViewDataBinding> : AppComp
                 onInitParams(Bundle())
             }
 
-            binding = DataBindingUtil.setContentView(this, getContentViewLayoutID())
-            binding?.lifecycleOwner = this
+            mBinding = DataBindingUtil.setContentView(this, getContentViewLayoutID())
+            mBinding?.lifecycleOwner = this
             createViewModel()
 
             //是否要检查权限
