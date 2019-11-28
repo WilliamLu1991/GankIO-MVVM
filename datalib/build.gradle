@@ -46,7 +46,8 @@ dependencies {
     api rootProject.ext.dependencies["okhttp-urlconnection"]
     api rootProject.ext.dependencies["logger"]
     api rootProject.ext.dependencies["eventbus"]
-    api rootProject.ext.dependencies["eventbus"]
+    //api rootProject.ext.dependencies["autodispose"]
+    //api rootProject.ext.dependencies["autodispose-archcomponents"]
     //api rootProject.ext.dependencies["room-runtime"]
     //annotationProcessor rootProject.ext.dependencies["room-compiler"]
 }

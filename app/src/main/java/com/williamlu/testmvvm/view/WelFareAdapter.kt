@@ -24,13 +24,6 @@ class WelFareAdapter(data: List<GankBean>?) : BaseQuickAdapter<GankBean, WelFare
     }
 
     override fun convert(helper: WelFareViewHolder?, item: GankBean) {
-        with(item) {
-            Glide.with(mContext)
-                .applyDefaultRequestOptions(RequestOptions().apply {
-                    centerCrop()
-                })
-                .load(url)
-                .into(helper!!.getView(R.id.iv_welfare))
-        }
+        helper?.dataBinding?.welfarebean = item
     }
 }

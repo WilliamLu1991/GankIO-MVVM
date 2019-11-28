@@ -8,5 +8,7 @@ import androidx.lifecycle.ViewModel
  * @Description:
  */
 abstract class BaseViewModel : ViewModel() {
-
+    /*fun  <T> Single<T>.bindLifeCycle(owner: LifecycleOwner): SingleSubscribeProxy<T> {
+        return this.`as`(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY)))
+    }*/
 }
