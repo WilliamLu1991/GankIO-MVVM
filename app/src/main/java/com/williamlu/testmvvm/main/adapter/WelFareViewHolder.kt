@@ -1,4 +1,4 @@
-package com.williamlu.testmvvm.view
+package com.williamlu.testmvvm.main.adapter
 
 import com.chad.library.adapter.base.BaseViewHolder
 import com.williamlu.testmvvm.databinding.ItemGankDataBinding

@@ -1,6 +1,7 @@
-package com.williamlu.testmvvm.viewmodel
+package com.williamlu.testmvvm.main.viewmodel
 
 import android.text.TextUtils
+import androidx.databinding.ObservableField
 import com.williamlu.testmvvm.base.BaseViewModel
 import androidx.lifecycle.MutableLiveData
 import com.williamlu.datalib.base.ApiException
@@ -19,7 +20,8 @@ import com.williamlu.toolslib.ToastUtils
  * @Date: 2019/11/19
  * @Description:
  */
-class MainViewModel : BaseViewModel() {
+class MainVM : BaseViewModel() {
+    val gankListBean: ObservableField<List<GankBean>> = ObservableField()
 
     fun getGankDaily(): MutableLiveData<GankDailyData> {
         val liveData = MutableLiveData<GankDailyData>()
@@ -61,6 +63,25 @@ class MainViewModel : BaseViewModel() {
                 }
             })
         return liveData
+    }
+
+    fun getGankFilterData(gankFilterType: String, page: Int) {
+        MainService.INSTANCE
+            .gankFilter(gankFilterType, AppConstant.ConfigConstant.SERVICE_PAGE_SIZE.toInt(), page)
+            .subscribe(object : ApiObserver<BaseListBean<GankBean>>() {
+                override fun onNext(t: BaseListBean<GankBean>) {
+                    gankListBean.set(t.results)
+                }
+
+                override fun onError(e: Throwable) {
+                    super.onError(e)
+                    if (e is ApiException) {
+                        if (!TextUtils.isEmpty(e.errorMsg)) {
+                            ToastUtils.showToast(e.errorMsg)
+                        }
+                    }
+                }
+            })
     }
 
 }

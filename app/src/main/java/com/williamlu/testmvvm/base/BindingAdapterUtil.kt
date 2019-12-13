@@ -3,7 +3,6 @@ package com.williamlu.testmvvm.base
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.williamlu.testmvvm.R
 
 /**
  * @Author: WilliamLu

@@ -1,4 +1,4 @@
-package com.williamlu.testmvvm.view
+package com.williamlu.testmvvm.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

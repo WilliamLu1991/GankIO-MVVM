@@ -1,4 +1,4 @@
-package com.williamlu.testmvvm.view
+package com.williamlu.testmvvm.main.view
 
 import android.graphics.Color
 import android.view.Menu
@@ -17,12 +17,14 @@ import com.williamlu.testmvvm.base.AppBaseActivity
 import com.williamlu.testmvvm.databinding.ActivityMainBinding
 import com.williamlu.testmvvm.model.GankBean
 import com.williamlu.testmvvm.model.GankFilterType
-import com.williamlu.testmvvm.viewmodel.MainViewModel
+import com.williamlu.testmvvm.main.adapter.GankFilterAdapter
+import com.williamlu.testmvvm.main.adapter.WelFareAdapter
+import com.williamlu.testmvvm.main.viewmodel.MainVM
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_app_bar.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 
-class MainActivity : AppBaseActivity<MainViewModel, ActivityMainBinding>(), BaseQuickAdapter.RequestLoadMoreListener {
+class MainActivity : AppBaseActivity<MainVM, ActivityMainBinding>(), BaseQuickAdapter.RequestLoadMoreListener {
     private var mPage: Int = 1
     private var mCurrentFilter: String = GankFilterType.ANDROID
     private var mGankFilterAdapter: GankFilterAdapter? = null
@@ -77,9 +79,9 @@ class MainActivity : AppBaseActivity<MainViewModel, ActivityMainBinding>(), Base
                 R.id.menu_extra -> {
                     getRvData(GankFilterType.EXTRA_SOURCES, mPage)
                 }
-                //                R.id.menu_video -> {
-                //                    filterChange(GankFilterType.VIDEO)
-                //                }
+                /*R.id.menu_video -> {
+                    filterChange(GankFilterType.VIDEO)
+                }*/
                 R.id.menu_welfare -> {
                     getRvData(GankFilterType.WELFARE, mPage)
                 }
