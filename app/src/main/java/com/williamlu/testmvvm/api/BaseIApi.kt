@@ -24,13 +24,13 @@ interface BaseIApi {
         @Path("filterType") filterType: String,
         @Path("count") count: Int,
         @Path("page") page: Int
-    ): Observable<BaseListBean<GankBean>>
+    ): Observable<BaseBean<List<GankBean>>>
 
     @GET("search/query/{queryText}/category/all/count/{count}/page/{page}")
     fun search(
         @Path("queryText") queryText: String,
         @Path("count") count: Int,
         @Path("page") page: Int
-    ): Observable<BaseListBean<GankBean>>
+    ): Observable<BaseBean<List<GankBean>>>
 
 }

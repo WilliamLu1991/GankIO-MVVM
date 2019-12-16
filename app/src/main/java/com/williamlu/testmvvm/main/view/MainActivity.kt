@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.williamlu.testmvvm.R
 import com.williamlu.testmvvm.base.AppBaseActivity
+import com.williamlu.testmvvm.base.BaseServerController
 import com.williamlu.testmvvm.databinding.ActivityMainBinding
 import com.williamlu.testmvvm.model.GankBean
 import com.williamlu.testmvvm.model.GankFilterType
@@ -102,6 +103,9 @@ class MainActivity : AppBaseActivity<MainVM, ActivityMainBinding>(), BaseQuickAd
         mCurrentFilter = gankFilterType
         mViewModel?.getGankFilter(gankFilterType, page)?.observe(this, Observer {
             dismissAllView()
+            if (it == null) {
+                return@Observer
+            }
             if (gankFilterType == GankFilterType.WELFARE) {
                 initWelFareRv(it)
             } else {

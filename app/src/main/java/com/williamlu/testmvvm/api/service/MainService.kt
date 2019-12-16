@@ -34,18 +34,18 @@ class MainService private constructor() : BaseApiService(), AppIMain {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun gankFilter(filterType: String, count: Int, page: Int): Observable<BaseListBean<GankBean>> {
+    override fun gankFilter(filterType: String, count: Int, page: Int): Observable<BaseBean<List<GankBean>>> {
         return AppConstant.getBaseApiService()
             .gankFilter(filterType, count, page)
-            .compose(DefaultListTransformer<BaseListBean<GankBean>>())
+            .compose(DefaultTransformer<BaseBean<List<GankBean>>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun search(queryText: String, count: Int, page: Int): Observable<BaseListBean<GankBean>> {
+    override fun search(queryText: String, count: Int, page: Int): Observable<BaseBean<List<GankBean>>> {
         return AppConstant.getBaseApiService()
             .search(queryText, count, page)
-            .compose(DefaultListTransformer<BaseListBean<GankBean>>())
+            .compose(DefaultTransformer<BaseBean<List<GankBean>>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

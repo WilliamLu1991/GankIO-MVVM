@@ -1,30 +1,29 @@
 package com.williamlu.testmvvm.base
 
-import com.williamlu.datalib.bean.BaseBean
-
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/23
  * @Description:
  */
-class BaseServerController<T>(data: T?) {
+class BaseServerController<T>(code: Int, data: T?, errorMsg: String? = null) {
 
-    private var bsv: BaseServerView<T>? = null
-    private var data: T? = null
+    var code: Int = 0
+    var data: T? = null
+    var errorMsg: String? = null
 
     init {
+        this.code = code
         this.data = data
+        this.errorMsg = errorMsg
     }
 
-    fun setBaseServerView(bsv: BaseServerView<T>) {
-        this.bsv = bsv
-    }
-
-    interface BaseServerView<T> {
+    companion object {
+        const val SUCCESS = 1
+        const val ERROR = 0
         /**
          * 获取数据成功
          */
-        fun onSuccess(data: T?)
+        fun <T> onSuccess(data: T?) = BaseServerController(SUCCESS, data)
 
         /**
          * 操作数据完成
@@ -34,21 +33,6 @@ class BaseServerController<T>(data: T?) {
         /**
          * 获取数据失败
          */
-        fun onError(msg: String?)
-    }
-
-    fun onSuccess(): BaseServerController<T>? {
-        bsv?.onSuccess(data)
-        return BaseServerController(data)
-    }
-
-    /*fun onCompleted(): BaseServerController<T> {
-        bsv?.onCompleted()
-        return this
-    }*/
-
-    fun onError(msg: String?): BaseServerController<T>? {
-        bsv?.onError(msg)
-        return BaseServerController(data)
+        fun <T> onError(msg: String?, data: T? = null) = BaseServerController(ERROR, data, msg)
     }
 }

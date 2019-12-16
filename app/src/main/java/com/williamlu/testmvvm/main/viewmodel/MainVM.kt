@@ -10,6 +10,7 @@ import com.williamlu.datalib.bean.BaseBean
 import com.williamlu.datalib.bean.BaseListBean
 import com.williamlu.testmvvm.AppConstant
 import com.williamlu.testmvvm.api.service.MainService
+import com.williamlu.testmvvm.base.BaseServerController
 import com.williamlu.testmvvm.model.GankBean
 import com.williamlu.testmvvm.model.GankDailyData
 import com.williamlu.toolslib.ToastUtils
@@ -21,7 +22,7 @@ import com.williamlu.toolslib.ToastUtils
  * @Description:
  */
 class MainVM : BaseViewModel() {
-    val gankListBean: ObservableField<List<GankBean>> = ObservableField()
+    var gankFilterLiveData = MutableLiveData<List<GankBean>>()
 
     fun getGankDaily(): MutableLiveData<GankDailyData> {
         val liveData = MutableLiveData<GankDailyData>()
@@ -45,12 +46,12 @@ class MainVM : BaseViewModel() {
     }
 
     fun getGankFilter(gankFilterType: String, page: Int): MutableLiveData<List<GankBean>> {
-        val liveData = MutableLiveData<List<GankBean>>()
+        gankFilterLiveData = MutableLiveData()
         MainService.INSTANCE
             .gankFilter(gankFilterType, AppConstant.ConfigConstant.SERVICE_PAGE_SIZE.toInt(), page)
-            .subscribe(object : ApiObserver<BaseListBean<GankBean>>() {
-                override fun onNext(t: BaseListBean<GankBean>) {
-                    liveData.postValue(t.results)
+            .subscribe(object : ApiObserver<BaseBean<List<GankBean>>>() {
+                override fun onNext(t: BaseBean<List<GankBean>>) {
+                    gankFilterLiveData.postValue(t.results)
                 }
 
                 override fun onError(e: Throwable) {
@@ -60,28 +61,10 @@ class MainVM : BaseViewModel() {
                             ToastUtils.showToast(e.errorMsg)
                         }
                     }
+                    gankFilterLiveData.postValue(null)
                 }
             })
-        return liveData
-    }
-
-    fun getGankFilterData(gankFilterType: String, page: Int) {
-        MainService.INSTANCE
-            .gankFilter(gankFilterType, AppConstant.ConfigConstant.SERVICE_PAGE_SIZE.toInt(), page)
-            .subscribe(object : ApiObserver<BaseListBean<GankBean>>() {
-                override fun onNext(t: BaseListBean<GankBean>) {
-                    gankListBean.set(t.results)
-                }
-
-                override fun onError(e: Throwable) {
-                    super.onError(e)
-                    if (e is ApiException) {
-                        if (!TextUtils.isEmpty(e.errorMsg)) {
-                            ToastUtils.showToast(e.errorMsg)
-                        }
-                    }
-                }
-            })
+        return gankFilterLiveData
     }
 
 }

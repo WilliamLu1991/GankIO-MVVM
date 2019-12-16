@@ -15,8 +15,8 @@ interface AppIMain {
 
     fun gankDaily(): Observable<BaseBean<GankDailyData>>
 
-    fun gankFilter(filterType: String, count: Int, page: Int): Observable<BaseListBean<GankBean>>
+    fun gankFilter(filterType: String, count: Int, page: Int): Observable<BaseBean<List<GankBean>>>
 
-    fun search(queryText: String, count: Int, page: Int): Observable<BaseListBean <GankBean>>
+    fun search(queryText: String, count: Int, page: Int): Observable<BaseBean<List<GankBean>>>
 
 }
